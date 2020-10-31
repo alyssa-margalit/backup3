@@ -7,19 +7,7 @@ import math
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 
-GPIO.setwarnings(False)
-servoPIN = 17
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(servoPIN, GPIO.OUT)
 
-p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
-p.start(2.5) # Initialization
-#GPIO.setwarnings(False)
-
-p.ChangeDutyCycle(10)
-time.sleep(1)
-p.ChangeDutyCycle(2.5)
-				
 
 
 def trivia_question_callback(client,userdata,message):
@@ -154,9 +142,7 @@ if __name__ == '__main__':
 							pot = grovepi.analogRead(potentiometer)
 							if pot>500:
 								print("three press")
-								p.ChangeDutyCycle(10)
-								time.sleep(1)
-								p.ChangeDutyCycle(2.5)
+								
 								time.sleep(2)
 								break
 						time.sleep(.3)
