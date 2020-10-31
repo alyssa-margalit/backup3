@@ -67,6 +67,9 @@ if __name__ == '__main__':
 	while True: 
 		#print(story)
 		#begin the sequence
+		print("hello")
+		setText("hello")
+		time.sleep(5)
 		distance = ultrasonicRead(ranger)
 		distance = int(distance)
 		#if story != 400:
