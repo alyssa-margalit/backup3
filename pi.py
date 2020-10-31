@@ -62,23 +62,24 @@ if __name__ == '__main__':
 	grovepi.pinMode(green_led, "OUTPUT")
 	grovepi.pinMode(buzzer, "OUTPUT")
 	grovepi.pinMode(button, "INPUT")
-
+	story = 0
 
 	while True: 
 		#print(story)
 		#begin the sequence
 		print("hello")
-		setText("hello")
-		time.sleep(5)
 		distance = ultrasonicRead(ranger)
+		print(distance)
 		distance = int(distance)
 		#if story != 400:
 		story = 0
 		if story == 0:
 			if distance>10:
+				print("begin")
 				story = 1
 
 		if story ==1:
+			print("red")
 			setRGB(255,0,0)
 			setText("who dares disturb my slumber")
 			time.sleep(5)
