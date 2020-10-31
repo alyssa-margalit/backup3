@@ -158,7 +158,8 @@ if __name__ == '__main__':
 								time.sleep(2)
 								break
 						time.sleep(.3)
-
+					p.ChangeDutyCycle(10)
+					time.sleep(0.5)
 					#dont forget to enter password here
 
 					story = 400
