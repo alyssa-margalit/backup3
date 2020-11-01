@@ -16,11 +16,22 @@ p = GPIO.PWM(servoPIN, 50)
 p.start(2.5)
 
 
+def scroll(the_text):
+	str_pad = " "*16
+	scroll_string = str_pad+the_text
+	for i in range (0,len(scroll_string)):
+		lcd_text = scroll_string[i:(i+15)]
+		time.sleep(0.2)
+		setText(lcd_text)
+	setText(str_pad)
+
+
+scroll("how dare you disturb my slumber")
 
 
 def trivia_question_callback(client,userdata,message):
 	print(str(message.payload, "utf-8"))
-	setText(str(message.payload, "utf-8"))
+	scroll(str(message.payload, "utf-8"))
 
 
 def trivia_answer_callback(client,userdata,message):
@@ -89,10 +100,10 @@ if __name__ == '__main__':
 		if story ==1:
 			print("red")
 			setRGB(255,0,0)
-			setText("who dares disturb my slumber")
-			time.sleep(5)
-			setText("have you come for my precious treasure?")
-			time.sleep(5)
+			scroll("who dares disturb my slumber")
+			#time.sleep(5)
+			scroll("have you come for my precious treasure?")
+			#time.sleep(5)
 			while True:
 				pot = grovepi.analogRead(potentiometer)
 				#print(pot)
@@ -107,12 +118,12 @@ if __name__ == '__main__':
 			print(response)
 			if response == "no":
 				setRGB(0,255,0)
-				setText("then replace the key and go away")
-				time.sleep(5)
+				scroll("then replace the key and go away")
+				#time.sleep(5)
 				story = 0
 			if response =="yes":
 				setRGB(0,0,255)
-				setText("then you must answer my trivia")
+				scroll("then you must answer my trivia")
 				
 				client.publish("alyssasrpi/trivia_request", "ready")
 				time.sleep(10)
@@ -134,7 +145,7 @@ if __name__ == '__main__':
 					setRGB(0,255,0)
 					setText("You are worthy!")
 					time.sleep(3)
-					setText("Enter password 123 to unlock ")
+					scroll("Enter password 123 to unlock ")
 					time.sleep(3)
 					state = 0
 
@@ -164,15 +175,15 @@ if __name__ == '__main__':
 
 					story = 400
 				else: 
-					setText("Fail! Return the treasure at once!!")
+					scroll("Fail! Return the treasure at once!!")
 					time.sleep(5)
 					dist = ultrasonicRead(ranger)
 					print(dist)
 					if dist <10:
-						setText("better luck next time!")
+						scroll("better luck next time!")
 						time.sleep(5)
 					else:
-						setText("I hereby curse you with eternal syntax errors!!!")
+						scroll("I hereby curse you with eternal syntax errors!!!")
 						time.sleep(5)
 						story = 400
 
