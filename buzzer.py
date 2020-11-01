@@ -5,7 +5,7 @@ gpg = easy.EasyGoPiGo3()
 
 my_buzzer = gpg.init_buzzer("AD2")
 
-my buzzer.sound(440)
+my_buzzer.sound(440)
 
 time.sleep(1)
 
