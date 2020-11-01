@@ -16,6 +16,17 @@ p = GPIO.PWM(servoPIN, 50)
 p.start(2.5)
 
 
+def scroll(the_text):
+	str_pad = " "*16
+	scroll_string = str_pad+the_text
+	for i in range (0,len(scroll_string)):
+		lcd_text = scroll_string[i:(i+15)]
+		time.sleep(0.2)
+		setText(lcd_text)
+	setText(str_pad)
+
+
+scroll("how dare you disturb my slumber")
 
 
 def trivia_question_callback(client,userdata,message):
@@ -89,7 +100,7 @@ if __name__ == '__main__':
 		if story ==1:
 			print("red")
 			setRGB(255,0,0)
-			setText("who dares disturb my slumber")
+			scroll("who dares disturb my slumber")
 			time.sleep(5)
 			setText("have you come for my precious treasure?")
 			time.sleep(5)
