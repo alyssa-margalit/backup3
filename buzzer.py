@@ -1,23 +1,18 @@
 import time 
-import grovepi
+import easygopigo3 as easy
 
-buzzer = 8
+gpg = easy.EasyGoPiGo3()
 
-grovepi.pinMode(buzzer, "OUTPUT")
+my_buzzer = gpg.init_buzzer("AD2")
 
-while True:
-	try:
-		grovepi.digitalWrite(buzzer, 50)
-		print('start')
-		time.sleep(1)
+my buzzer.sound(440)
 
-		grovepi.digitalWrite(buzzer, 0)
-		print("stop")
-		time.sleep(1)
+time.sleep(1)
 
-	except KeyboardInterrupt:
-		grovepi.digitalWrite(buzzer, 0)
-		break
+my_buzzer.sound(880)
 
-	except IOError:
-		print("error")
+time.sleep(1)
+
+my_buzzer.sound(220)
+
+time.sleep(1)
