@@ -1,18 +1,18 @@
 import time 
-import easygopigo3 as easy
+import grovepi
 
-gpg = easy.EasyGoPiGo3()
+buzzer = 6
 
-my_buzzer = gpg.init_buzzer("AD2")
+grovepi.pinMode(buzzer, "OUTPUT")
 
-my_buzzer.sound(440)
+def play_note(freq):
 
-time.sleep(1)
+	period = 1000/freq
+	while freq = freq - 1:
+		grovepi.digitalWrite(buzzer, 1)
+		time.sleep(1)
+		grovepi.digitalWrite(buzzer, 0)
+		time.sleep(1)
 
-my_buzzer.sound(880)
-
-time.sleep(1)
-
-my_buzzer.sound(220)
-
-time.sleep(1)
+while True:
+	play_note(440)
