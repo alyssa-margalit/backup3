@@ -9,9 +9,9 @@ def play_note(freq):
 
 	period = 1000/freq
 	while True:
-		grovepi.digitalWrite(buzzer, 1)
+		grovepi.analogWrite(buzzer, 1)
 		time.sleep(1)
-		grovepi.digitalWrite(buzzer, 0)
+		grovepi.analogWrite(buzzer, 0)
 		time.sleep(1)
 		freq = freq - 1
 
