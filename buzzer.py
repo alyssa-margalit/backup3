@@ -7,7 +7,7 @@ grovepi.pinMode(buzzer, "OUTPUT")
 
 while True:
 	try:
-		grovepi.digitalWrite(buzzer, 1)
+		grovepi.digitalWrite(buzzer, 50)
 		print('start')
 		time.sleep(1)
 
