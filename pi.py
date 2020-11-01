@@ -101,9 +101,9 @@ if __name__ == '__main__':
 			print("red")
 			setRGB(255,0,0)
 			scroll("who dares disturb my slumber")
-			time.sleep(5)
-			setText("have you come for my precious treasure?")
-			time.sleep(5)
+			#time.sleep(5)
+			scroll("have you come for my precious treasure?")
+			#time.sleep(5)
 			while True:
 				pot = grovepi.analogRead(potentiometer)
 				#print(pot)
@@ -118,12 +118,12 @@ if __name__ == '__main__':
 			print(response)
 			if response == "no":
 				setRGB(0,255,0)
-				setText("then replace the key and go away")
-				time.sleep(5)
+				scroll("then replace the key and go away")
+				#time.sleep(5)
 				story = 0
 			if response =="yes":
 				setRGB(0,0,255)
-				setText("then you must answer my trivia")
+				scroll("then you must answer my trivia")
 				
 				client.publish("alyssasrpi/trivia_request", "ready")
 				time.sleep(10)
@@ -145,7 +145,7 @@ if __name__ == '__main__':
 					setRGB(0,255,0)
 					setText("You are worthy!")
 					time.sleep(3)
-					setText("Enter password 123 to unlock ")
+					scroll("Enter password 123 to unlock ")
 					time.sleep(3)
 					state = 0
 
@@ -175,15 +175,15 @@ if __name__ == '__main__':
 
 					story = 400
 				else: 
-					setText("Fail! Return the treasure at once!!")
+					scroll("Fail! Return the treasure at once!!")
 					time.sleep(5)
 					dist = ultrasonicRead(ranger)
 					print(dist)
 					if dist <10:
-						setText("better luck next time!")
+						scroll("better luck next time!")
 						time.sleep(5)
 					else:
-						setText("I hereby curse you with eternal syntax errors!!!")
+						scroll("I hereby curse you with eternal syntax errors!!!")
 						time.sleep(5)
 						story = 400
 
