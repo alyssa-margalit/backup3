@@ -36,8 +36,8 @@ def trivia_question_callback(client,userdata,message):
 
 def trivia_answer_callback(client,userdata,message):
 	print(str(message.payload, "utf-8"))
-	#global answer
-	#answer = str(message.payload, "utf-8")
+	global answer
+	answer = str(message.payload, "utf-8")
 	#print(answer)
 	
 
@@ -132,7 +132,7 @@ if __name__ == '__main__':
 				
 				
 				time.sleep(2)
-				#print(answer)
+				print(answer)
 				while True:
 					pot = grovepi.analogRead(potentiometer)
 					#print(pot)
