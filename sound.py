@@ -8,8 +8,8 @@ import math
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
-pygame.mixer.init()
-pygame.mixer.music.load('forest.mp3')
-pygame.mixer.music.play(999)
-
+from pygame import mixer
+mixer.init()
+mixer.music.load("forest.mp3")
+mixer.music.play()
 setText("hello")
