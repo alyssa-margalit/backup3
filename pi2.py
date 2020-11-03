@@ -22,7 +22,7 @@ def scroll(the_text):
 	for i in range (0,len(scroll_string)):
 		lcd_text = scroll_string[i:(i+15)]
 		time.sleep(0.1)
-		setText(lcd_text)
+		setText_norefresh(lcd_text)
 	setText(str_pad)
 
 
@@ -124,11 +124,15 @@ if __name__ == '__main__':
 				story = 0
 			if response =="yes":
 				setRGB(0,0,255)
-				scroll("then you must answer my trivia")
 				
-				client.publish("alyssasrpi/trivia_request", "ready")
-				time.sleep(10)
+				scroll("then you must answer my trivia")
+				time.sleep(5)
 
+				client.publish("alyssasrpi/trivia_request", "ready")
+				
+				
+				#time.sleep(10)
+				print(answer)
 				while True:
 					pot = grovepi.analogRead(potentiometer)
 					#print(pot)
@@ -141,7 +145,7 @@ if __name__ == '__main__':
 							response1 = "False"
 							break
 				print(response1)
-				print(answer)
+				
 				if response1 == answer:
 					setRGB(0,255,0)
 					setText("You are worthy!")
