@@ -31,14 +31,14 @@ scroll("how dare you disturb my slumber")
 
 def trivia_question_callback(client,userdata,message):
 	print(str(message.payload, "utf-8"))
-	scroll(str(message.payload, "utf-8"))
+	#scroll(str(message.payload, "utf-8"))
 
 
 def trivia_answer_callback(client,userdata,message):
 	print(str(message.payload, "utf-8"))
-	global answer
-	answer = str(message.payload, "utf-8")
-	print(answer)
+	#global answer
+	#answer = str(message.payload, "utf-8")
+	#print(answer)
 	
 
 
@@ -146,7 +146,7 @@ if __name__ == '__main__':
 							break
 				print(response1)
 				
-				if response1 == True:
+				if response1 == "True":
 					setRGB(0,255,0)
 					setText("You are worthy!")
 					time.sleep(3)
