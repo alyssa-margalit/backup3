@@ -35,7 +35,7 @@ def trivia_question_callback(client,userdata,message):
 
 
 def trivia_answer_callback(client,userdata,message):
-	#print(str(message.payload, "utf-8"))
+	print(str(message.payload, "utf-8"))
 	global answer
 	answer = str(message.payload, "utf-8")
 	print(answer)
