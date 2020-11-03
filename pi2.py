@@ -31,6 +31,8 @@ scroll("how dare you disturb my slumber")
 
 def trivia_question_callback(client,userdata,message):
 	print(str(message.payload, "utf-8"))
+	global question 
+	question = str(message.payload, "utf-8")
 	#scroll(str(message.payload, "utf-8"))
 
 
