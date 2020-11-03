@@ -1,3 +1,3 @@
 import playsound
-playsound.playsound('forest.mp3', False)
+playsound.playsound('forest.mp3', 0)
 print ('...')
