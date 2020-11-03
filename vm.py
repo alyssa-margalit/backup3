@@ -72,6 +72,6 @@ if __name__ == '__main__':
     print(trivia[0])
     print(trivia[1])
     #print(answer)
-    client.publish("alyssasrpi/trivia",trivia[1])
+    #client.publish("alyssasrpi/trivia",trivia[1])
     while True:
         time.sleep(1)
