@@ -131,8 +131,8 @@ if __name__ == '__main__':
 				client.publish("alyssasrpi/trivia_request", "ready")
 				
 				
-				#time.sleep(10)
-				print(answer)
+				time.sleep(2)
+				#print(answer)
 				while True:
 					pot = grovepi.analogRead(potentiometer)
 					#print(pot)
@@ -146,37 +146,13 @@ if __name__ == '__main__':
 							break
 				print(response1)
 				
-				if response1 == answer:
+				if response1 == True:
 					setRGB(0,255,0)
 					setText("You are worthy!")
 					time.sleep(3)
 					scroll("Enter password 123 to unlock ")
 					time.sleep(3)
 					state = 0
-
-					while True:
-
-						if state ==0:
-							pressed = digitalRead(button)
-							if pressed:
-								state = 1
-								print("one press")
-						elif state==1:
-							pressed = digitalRead(button)
-							if pressed:
-								state = 2
-								print("two press")
-						elif state==2:
-							pot = grovepi.analogRead(potentiometer)
-							if pot>500:
-								print("three press")
-								
-								time.sleep(2)
-								break
-						time.sleep(.3)
-					p.ChangeDutyCycle(10)
-					time.sleep(0.5)
-					#dont forget to enter password here
 
 					story = 400
 				else: 
