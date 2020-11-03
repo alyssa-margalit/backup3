@@ -146,7 +146,7 @@ if __name__ == '__main__':
 							break
 				print(response1)
 				
-				if response1 == "True":
+				if response1 == str(answer):
 					setRGB(0,255,0)
 					setText("You are worthy!")
 					time.sleep(3)
