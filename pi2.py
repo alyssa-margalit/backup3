@@ -7,13 +7,7 @@ import math
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
-import pygame
-pygame.mixer.init()
-pygame.mixer.music.load("forest.mp3")
-pygame.mixer.music.play()
 
-while pygame.mixer.music.get_busy() == True:
-    continue
 
 servoPIN = 17
 GPIO.setmode(GPIO.BCM)
