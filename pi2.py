@@ -12,6 +12,8 @@ import time
 servoPIN = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servoPIN, GPIO.OUT)
+GPIO.setup(4, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(4, 1)       # set port/pin value to 1/GPIO.HIGH/True
 
 p = GPIO.PWM(servoPIN, 50)
 p.start(2.5)
@@ -195,6 +197,7 @@ if __name__ == '__main__':
 				
 				if response1 == str(answer):
 					setRGB(0,255,0)
+					GPIO.output(4, 0)       # set port/pin value to 0/GPIO.LOW/False  
 					setText("You are worthy!")
 					time.sleep(3)
 					client.publish("alyssasrpi/showGraph","show")
