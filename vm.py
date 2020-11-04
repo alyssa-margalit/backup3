@@ -8,6 +8,8 @@ import sys
 import math
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
+x = ['Wizard', 'Hero', 'Villain', 'Peasant']
+energy = [0, 0, 0, 0]
 # Reddit API: https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=boolean
 
 def on_connect(client, userdata, flags, rc):
@@ -28,8 +30,28 @@ def trivia_request_callback(client,userdata,message):
     client.publish("alyssasrpi/trivia_question",trivia[0])
     client.publish("alyssasrpi/trivia_answer",trivia[1])
     #client.publish("alyssasrpi/trivia",trivia[1])
-def newAdventurer(client,userdata,msg):
+def newAdventurer(client,userdata,message):
 	print(str(message.payload, "utf-8"))
+	type = str(message.payload, "utf-8")
+	if type == "Wizard":
+		energy[0]+=1
+	elif type =="Hero":
+		energy[1]+=1
+	elif type =="Villain":
+		energy[2]+=1
+	else:
+		energu[3]+=1
+	
+	x_pos = [i for i, _ in enumerate(x)]
+
+	plt.bar(x_pos, energy, color='green')
+	plt.xlabel("people")
+	plt.ylabel("numbers")
+	plt.title("people trying to get treasure")
+
+	plt.xticks(x_pos, x)
+
+	plt.show()
 
 
 
