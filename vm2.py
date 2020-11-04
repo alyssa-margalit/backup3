@@ -33,7 +33,8 @@ def on_connect(client, userdata, flags, rc):
     client.message_callback_add("alyssasrpi/trivia_request", trivia_request_callback)
     client.subscribe("alyssasrpi/newAdventurer")
     client.message_callback_add("alyssasrpi/newAdventurer",newAdventurer)
-    
+    client.subscribe("alyssasrpi/showGraph")
+    client.message_callback_add("alyssasrpi/showGraph",showGraph)
 
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
@@ -68,6 +69,8 @@ def newAdventurer(client,userdata,message):
 
     plt.xticks(x_pos, x)
 
+def showGraph(client,userdata,message):
+    print(str(message.payload,"utf-8"))
     plt.show()
 
 

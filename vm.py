@@ -40,18 +40,18 @@ def newAdventurer(client,userdata,message):
 	elif type =="Villain":
 		energy[2]+=1
 	else:
-		energu[3]+=1
+		energy[3]+=1
 	
-	x_pos = [i for i, _ in enumerate(x)]
+	#x_pos = [i for i, _ in enumerate(x)]
 
-	plt.bar(x_pos, energy, color='green')
-	plt.xlabel("people")
-	plt.ylabel("numbers")
-	plt.title("people trying to get treasure")
+	#plt.bar(x_pos, energy, color='green')
+	#plt.xlabel("people")
+	#plt.ylabel("numbers")
+	#plt.title("people trying to get treasure")
 
-	plt.xticks(x_pos, x)
+	#plt.xticks(x_pos, x)
 
-	plt.show()
+	#plt.show()
 
 
 

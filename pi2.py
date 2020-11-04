@@ -197,6 +197,7 @@ if __name__ == '__main__':
 					setRGB(0,255,0)
 					setText("You are worthy!")
 					time.sleep(3)
+					client.publish("alyssasrpi/showGraph","show")
 					#scroll("Enter password 123 to unlock ")
 					#time.sleep(3)
 					#state = 0
