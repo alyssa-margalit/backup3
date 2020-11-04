@@ -86,6 +86,12 @@ if __name__ == '__main__':
 	grovepi.pinMode(buzzer, "OUTPUT")
 	grovepi.pinMode(button, "INPUT")
 	story = 0
+	pot = analogRead(potentiometer)
+	oldPot1 = pot
+	oldPot2 = pot
+	newPot = pot
+	averagePot = pot
+	deltaPot = 0
 
 	while True: 
 		#print(story)
@@ -97,10 +103,13 @@ if __name__ == '__main__':
 		#if story != 400:
 		story = 0
 		if story == 0:
-			pot = analogRead(potentiometer)
-			if int(pot) >500:
-				print("begin")
-				story= 1
+			newPot = analogRead(potentiometer)
+			averagePot = (oldPot1+oldPot2)/2
+			deltaPot = newPot-averagePot
+			print(deltaPot)
+			#if int(pot) >500:
+				#print("begin")
+				#story= 1
 			#if distance>10:
 				#print("begin")
 				#story = 1
@@ -157,10 +166,9 @@ if __name__ == '__main__':
 					setRGB(0,255,0)
 					setText("You are worthy!")
 					time.sleep(3)
-					scroll("Enter password 123 to unlock ")
-					time.sleep(3)
-					state = 0
-
+					#scroll("Enter password 123 to unlock ")
+					#time.sleep(3)
+					#state = 0
 					story = 400
 				else: 
 					scroll("Fail! Return the treasure at once!!")
