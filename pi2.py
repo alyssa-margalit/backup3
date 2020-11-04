@@ -125,8 +125,8 @@ if __name__ == '__main__':
 		if story ==1:
 			print("red")
 			setRGB(255,0,0)
-			scroll("who dares disturb my slumber")
-			#time.sleep(5)
+			setText("who dares disturb my slumber")
+			time.sleep(5)
 			while True:
 				pot = grovepi.analogRead(potentiometer)
 				#print(pot)
