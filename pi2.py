@@ -110,7 +110,7 @@ if __name__ == '__main__':
 			time.sleep(1)
 			oldPot1 = oldPot2
 			oldPot2 = newPot
-			if deltaPot>10:
+			if abs(deltaPot)>10:
 				print("begin")
 				story = 1
 			#if int(pot) >500:
@@ -160,6 +160,7 @@ if __name__ == '__main__':
 					pot = grovepi.analogRead(potentiometer)
 					#print(pot)
 					pressed = digitalRead(button)
+					scroll(question)
 					if pressed:
 						if pot>500:
 							response1 = "True"
