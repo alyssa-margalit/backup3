@@ -155,6 +155,7 @@ if __name__ == '__main__':
 				
 				time.sleep(2)
 				print(answer)
+				scroll(question)
 				while True:
 					pot = grovepi.analogRead(potentiometer)
 					#print(pot)
