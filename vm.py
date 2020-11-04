@@ -6,12 +6,16 @@ import paho.mqtt.client as mqtt
 import time
 import sys
 import math
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
 # Reddit API: https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=boolean
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
     client.subscribe("alyssasrpi/trivia_request")
     client.message_callback_add("alyssasrpi/trivia_request", trivia_request_callback)
+    client.subscribe("alyssasrpi/newAdventurer")
+    client.message_callback_add("alyssasrpi/newAdventurer",newAdventurer)
     
 
 def on_message(client, userdata, msg):
@@ -24,6 +28,8 @@ def trivia_request_callback(client,userdata,message):
     client.publish("alyssasrpi/trivia_question",trivia[0])
     client.publish("alyssasrpi/trivia_answer",trivia[1])
     #client.publish("alyssasrpi/trivia",trivia[1])
+def newAdventurer(client,userdata,msg):
+	print(str(message.payload, "utf-8"))
 
 
 

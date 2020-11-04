@@ -143,6 +143,7 @@ if __name__ == '__main__':
 						response = "Peasant"
 						break
 			print(response)
+			client.publish("alyssasrpi/newAdventurer", response)
 			scroll("have you come for my precious treasure?")
 			#time.sleep(5)
 			while True:
