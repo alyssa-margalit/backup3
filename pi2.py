@@ -155,12 +155,16 @@ if __name__ == '__main__':
 				
 				time.sleep(2)
 				print(answer)
+				count = 0
 				#scroll(question)
 				while True:
 					pot = grovepi.analogRead(potentiometer)
 					#print(pot)
 					pressed = digitalRead(button)
-					scroll(question)
+					if count == 0:
+						scroll(question)
+						count = 1
+
 					if pressed:
 						if pot>500:
 							response1 = "True"
