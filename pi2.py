@@ -125,6 +125,24 @@ if __name__ == '__main__':
 			setRGB(255,0,0)
 			scroll("who dares disturb my slumber")
 			#time.sleep(5)
+			while True:
+				pot = grovepi.analogRead(potentiometer)
+				#print(pot)
+				pressed = digitalRead(button)
+				if pressed:
+					if 0<pot<250:
+						response = "Wizard"
+						break
+					elif 250<pot<500:
+						response = "Hero"
+						break
+					elif 500<pot<750:
+						response = "Villain"
+						break
+					else:
+						response = "Peasant"
+						break
+			print(response)
 			scroll("have you come for my precious treasure?")
 			#time.sleep(5)
 			while True:
