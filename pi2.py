@@ -27,7 +27,7 @@ def scroll(the_text):
 	setText(str_pad)
 
 
-scroll("how dare you disturb my slumber")
+#scroll("how dare you disturb my slumber")
 
 
 def trivia_question_callback(client,userdata,message):
@@ -97,9 +97,13 @@ if __name__ == '__main__':
 		#if story != 400:
 		story = 0
 		if story == 0:
-			if distance>10:
+			pot = analogRead(potentiometer)
+			if int(pot) >500:
 				print("begin")
-				story = 1
+				story= 1
+			#if distance>10:
+				#print("begin")
+				#story = 1
 
 		if story ==1:
 			print("red")
