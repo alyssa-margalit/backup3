@@ -108,6 +108,8 @@ if __name__ == '__main__':
 			deltaPot = newPot-averagePot
 			print(deltaPot)
 			time.sleep(1)
+			oldPot1 = oldPot2
+			oldPot2 = newPot
 			#if int(pot) >500:
 				#print("begin")
 				#story= 1
