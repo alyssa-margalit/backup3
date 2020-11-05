@@ -13,7 +13,7 @@ def variable_delay_us(delay):
 def play_note(freq):
 	period = 1000000/freq
 	while freq != 0:
-		grovepi.analogWrite(buzzer,523
+		grovepi.analogWrite(buzzer,523)
 		variable_delay_us(period/2)
 		grovepi.analoglWrite(buzzer,0)
 		variable_delay_us(period/2)
