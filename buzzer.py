@@ -4,6 +4,7 @@ import grovepi
 buzzer = 6
 
 grovepi.pinMode(buzzer, "OUTPUT")
+usleep = lambda x: time.sleep(x/1000000.0)
 
 def variable_delay_us(delay):
 	int i = (delay + 5)/10
@@ -19,6 +20,11 @@ def play_note(freq):
 		grovepi.analogWrite(buzzer, 0)
 		variable_delay_us(period/2)
 		freq = freq - 1
+		usleep(1700)
+		grovepi.analogWrite(buzzer, 0)
+		time.sleep(1700)
+		
+>>>>>>> d040793e2274c8a2df4398e2540e73bf23866159
 
 
 play_note(440)
