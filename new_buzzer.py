@@ -20,8 +20,3 @@ def play_note(freq):
 
 play_note(440)
 
-except KeyboardInterrupt:
-		grovepi.digitalWrite(buzzer,0)
-		break
-	except IOError:
-		print ("Error")
