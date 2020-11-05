@@ -43,3 +43,5 @@ def playNote(note, duration) :
 		if names[i] == note:
 			playTone(tones[i], duration);
 			step += 1
+
+playNote(c, 1)
