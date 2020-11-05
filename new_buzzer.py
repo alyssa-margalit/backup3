@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import grovepi
 
 buzzer_pin = 3
 
