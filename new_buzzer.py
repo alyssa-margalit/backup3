@@ -18,5 +18,5 @@ def play_note(freq):
 		grovepi.digitalWrite(buzzer,0)
 		variable_delay_us(period/2)
 
-play_note(440)
+play_note(262)
 
