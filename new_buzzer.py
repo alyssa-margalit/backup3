@@ -3,31 +3,43 @@ import grovepi
 
 buzzer = 3
  
-grovepi.pinMode(buzzer,"OUTPUT")
+length = 15
+notes = "ccggaagffeeddc "
+beats = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 4]
+tempo = 300;
 
-def variable_delay_us(delay):
-	i = (delay + 5)/10
-	while i != 0:
-		time.sleep(0.00001)
+def setup():
+	grovepi.pinMode(buzzer,"OUTPUT")
 
-def play_note(freq):
-	period = 1000000/freq
-	while freq != 0:
-		grovepi.analogWrite(buzzer,freq)
-		variable_delay_us(period/2)
-		grovepi.analoglWrite(buzzer,0)
-		variable_delay_us(period/2)
 
-play_note(1500)
-time.sleep(1)
-grovepi.analoglWrite(buzzer,0)
-play_note(494)
-time.sleep(1)
-grovepi.analoglWrite(buzzer,0)
-play_note(523)
-time.sleep(1)
-grovepi.analoglWrite(buzzer,0)
+def loop():
 
-#except KeyboardInterrupt:
-	#grovepi.analogWrite(buzzer,0)
-	#break
+	for i in range(length):
+		if notes[i] == ' ':
+			delay(beats[i] * tempo)
+		else:
+			playNote(notes[i], beats[i] * tempo)
+			delay(tempo / 2)
+
+
+
+def playTone(tone, duration):
+	step = 0
+	end = duration * 1000
+	for i in range (0, step, end):
+		grovepi.digitalWrite(buzzer, 1)
+		time.sleep(tone/100000)
+		grovepi.digitalWrite(buzzer, 0)
+		time.sleep(tone/100000)
+		i += tone*2
+		step = i
+
+
+def playNote(note, duration) :
+	char_names = ['c', 'd', 'e', 'f', 'g', 'a', 'b', 'C']
+	tones = [1915, 1700, 1519, 1432, 1275, 1136, 1014, 956]
+	step = 1
+	for i in range(0, step, 8):
+		if names[i] == note:
+			playTone(tones[i], duration);
+			step += 1
