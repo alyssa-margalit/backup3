@@ -4,15 +4,13 @@ import grovepi
 buzzer = 3
 freq = 1000
 i = 0
+grovepi.pinMode(buzzer,"OUTPUT")
 
-while True:
-	try: 
-		if i < freq:
-			grovepi.analogWrite(buzzer, i)
-			i = i + 20
-			time.sleep(0.5)
+grovepi.analogWrite(buzzer, 262)
+time.sleep(0.5)
+grovepi.analogWrite(buzzer, 320)
+time.sleep(0.5)
+grovepi.analogWrite(buzzer, 440)
+time.sleep(0.5)
 
-
-	except KeyboardInterrupt:
-		grovepi.analogWrite(buzzer,0)
-		break
+grovepi.pinMode(buzzer,"INPUT")
