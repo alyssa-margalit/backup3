@@ -20,6 +20,6 @@ def play_note(freq):
 
 play_note(523)
 
-except KeyboardInterrupt:
-	grovepi.analogWrite(buzzer,0)
-	break
+#except KeyboardInterrupt:
+	#grovepi.analogWrite(buzzer,0)
+	#break
