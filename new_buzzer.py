@@ -4,7 +4,7 @@ import grovepi
 buzzer = 3
  
 length = 15
-notes = [c, c, g, g, a, a, g, f, f, e, e, d, d, c]
+notes = ["c", "c", "g", "g", "a", "a", "g", "f", "f", "e", "e", "d", "d", "c"]
 beats = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 4]
 tempo = 300;
 
@@ -36,7 +36,7 @@ def playTone(tone, duration):
 
 
 def playNote(note, duration) :
-	char_names = ['c', 'd', 'e', 'f', 'g', 'a', 'b', 'C']
+	char_names = ["c", "d", "e", "f", "g", "a", "b", "C"]
 	tones = [1915, 1700, 1519, 1432, 1275, 1136, 1014, 956]
 	step = 1
 	for i in range(0, step, 8):
