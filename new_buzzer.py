@@ -2,7 +2,7 @@ import time
 import grovepi
 
 buzzer = 3
-freq = 440
+freq = 1000
 i = 0
 
 while True:
