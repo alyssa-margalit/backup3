@@ -545,10 +545,10 @@ def buzz(frequency, length):	 #create the function "buzz" and feed it the pitch 
 	
 	for i in range(numCycles):		#start a loop from 0 to the variable "cycles" calculated above
 		#GPIO.output(buzzer_pin, True)	 #set pin 27 to high
-		grovepi.digitalWrite(buzzer_pin, 1)
+		grovepi.analogWrite(buzzer_pin, 440)
 		time.sleep(delayValue)		#wait with pin 27 high
 		#GPIO.output(buzzer_pin, False)		#set pin 27 to low
-		grovepi.digitalWrite(buzzer_pin, 0)
+		grovepi.analogWrite(buzzer_pin, 0)
 		time.sleep(delayValue)		#wait with pin 27 low
 	
 
