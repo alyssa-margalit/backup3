@@ -17,6 +17,8 @@ def play_note(freq)
 		variable_delay_us(period/2)
 		grovepi.digitalWrite(buzzer,0)
 		variable_delay_us(period/2)
+		
+play_note(440)
 
 except KeyboardInterrupt:
 		grovepi.digitalWrite(buzzer,0)
