@@ -8,9 +8,12 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
 
+
 servoPIN = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servoPIN, GPIO.OUT)
+GPIO.setup(4, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(4, 1)       # set port/pin value to 1/GPIO.HIGH/True
 
 p = GPIO.PWM(servoPIN, 50)
 p.start(2.5)
@@ -26,12 +29,14 @@ def scroll(the_text):
 	setText(str_pad)
 
 
-scroll("how dare you disturb my slumber")
+#scroll("how dare you disturb my slumber")
 
 
 def trivia_question_callback(client,userdata,message):
 	print(str(message.payload, "utf-8"))
-	scroll(str(message.payload, "utf-8"))
+	global question 
+	question = str(message.payload, "utf-8")
+	#scroll(str(message.payload, "utf-8"))
 
 
 def trivia_answer_callback(client,userdata,message):
@@ -83,6 +88,12 @@ if __name__ == '__main__':
 	grovepi.pinMode(buzzer, "OUTPUT")
 	grovepi.pinMode(button, "INPUT")
 	story = 0
+	pot = analogRead(potentiometer)
+	oldPot1 = pot
+	oldPot2 = pot
+	newPot = pot
+	averagePot = pot
+	deltaPot = 0
 
 	while True: 
 		#print(story)
@@ -94,15 +105,47 @@ if __name__ == '__main__':
 		#if story != 400:
 		story = 0
 		if story == 0:
-			if distance>10:
+			newPot = analogRead(potentiometer)
+			averagePot = (oldPot1+oldPot2)/2
+			deltaPot = newPot-averagePot
+			print(deltaPot)
+			time.sleep(1)
+			oldPot1 = oldPot2
+			oldPot2 = newPot
+			if abs(deltaPot)>10:
 				print("begin")
 				story = 1
+			#if int(pot) >500:
+				#print("begin")
+				#story= 1
+			#if distance>10:
+				#print("begin")
+				#story = 1
 
 		if story ==1:
 			print("red")
 			setRGB(255,0,0)
-			scroll("who dares disturb my slumber")
-			#time.sleep(5)
+			setText("who dares disturb my slumber")
+			time.sleep(5)
+			while True:
+				pot = grovepi.analogRead(potentiometer)
+				#print(pot)
+				pressed = digitalRead(button)
+				if pressed:
+					if 0<pot<250:
+						response = "Wizard"
+						break
+					elif 250<pot<500:
+						response = "Hero"
+						break
+					elif 500<pot<750:
+						response = "Villain"
+						break
+					else:
+						response = "Peasant"
+						break
+			print(response)
+			client.publish("alyssasrpi/newAdventurer", response)
 			scroll("have you come for my precious treasure?")
 			#time.sleep(5)
 			while True:
@@ -124,15 +167,25 @@ if __name__ == '__main__':
 				story = 0
 			if response =="yes":
 				setRGB(0,0,255)
-				scroll("then you must answer my trivia")
 				
-				client.publish("alyssasrpi/trivia_request", "ready")
-				time.sleep(10)
+				scroll("then you must answer my trivia")
+				time.sleep(5)
 
+				client.publish("alyssasrpi/trivia_request", "ready")
+				
+				
+				time.sleep(2)
+				print(answer)
+				count = 0
+				#scroll(question)
 				while True:
 					pot = grovepi.analogRead(potentiometer)
 					#print(pot)
 					pressed = digitalRead(button)
+					if count == 0:
+						scroll(question)
+						count = 1
+
 					if pressed:
 						if pot>500:
 							response1 = "True"
@@ -141,39 +194,16 @@ if __name__ == '__main__':
 							response1 = "False"
 							break
 				print(response1)
-				print(answer)
-				if response1 == answer:
+				
+				if response1 == str(answer):
 					setRGB(0,255,0)
+					GPIO.output(4, 0)       # set port/pin value to 0/GPIO.LOW/False  
 					setText("You are worthy!")
 					time.sleep(3)
-					scroll("Enter password 123 to unlock ")
-					time.sleep(3)
-					state = 0
-
-					while True:
-
-						if state ==0:
-							pressed = digitalRead(button)
-							if pressed:
-								state = 1
-								print("one press")
-						elif state==1:
-							pressed = digitalRead(button)
-							if pressed:
-								state = 2
-								print("two press")
-						elif state==2:
-							pot = grovepi.analogRead(potentiometer)
-							if pot>500:
-								print("three press")
-								
-								time.sleep(2)
-								break
-						time.sleep(.3)
-					p.ChangeDutyCycle(10)
-					time.sleep(0.5)
-					#dont forget to enter password here
-
+					client.publish("alyssasrpi/showGraph","show")
+					#scroll("Enter password 123 to unlock ")
+					#time.sleep(3)
+					#state = 0
 					story = 400
 				else: 
 					scroll("Fail! Return the treasure at once!!")

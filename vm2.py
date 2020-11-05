@@ -6,10 +6,25 @@ import paho.mqtt.client as mqtt
 import time
 import sys
 import math
+import json 
 import matplotlib.pyplot as plt
+
 plt.style.use('ggplot')
 x = ['Wizard', 'Hero', 'Villain', 'Peasant']
-energy = [0, 0, 0, 0]
+
+# Data to be written 
+dictionary ={ 
+    "Wizard" : 0, 
+    "Hero" : 0, 
+    "Villain" : 0, 
+    "Peasant" : 0
+} 
+## use this to reset the dictionary
+#with open("sample.json", "w") as outfile: 
+    #json.dump(dictionary, outfile) 
+with open('sample.json','r') as openfile:
+    json_object = json.load(openfile)
+
 # Reddit API: https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=boolean
 
 def on_connect(client, userdata, flags, rc):
@@ -18,7 +33,8 @@ def on_connect(client, userdata, flags, rc):
     client.message_callback_add("alyssasrpi/trivia_request", trivia_request_callback)
     client.subscribe("alyssasrpi/newAdventurer")
     client.message_callback_add("alyssasrpi/newAdventurer",newAdventurer)
-    
+    client.subscribe("alyssasrpi/showGraph")
+    client.message_callback_add("alyssasrpi/showGraph",showGraph)
 
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
@@ -31,27 +47,31 @@ def trivia_request_callback(client,userdata,message):
     client.publish("alyssasrpi/trivia_answer",trivia[1])
     #client.publish("alyssasrpi/trivia",trivia[1])
 def newAdventurer(client,userdata,message):
-	print(str(message.payload, "utf-8"))
-	type = str(message.payload, "utf-8")
-	if type == "Wizard":
-		energy[0]+=1
-	elif type =="Hero":
-		energy[1]+=1
-	elif type =="Villain":
-		energy[2]+=1
-	else:
-		energy[3]+=1
-	
-	#x_pos = [i for i, _ in enumerate(x)]
+    print(str(message.payload, "utf-8"))
+    type = str(message.payload, "utf-8")
+    if type == "Wizard":
+        json_object['Wizard']+=1
+    elif type =="Hero":
+        json_object['Hero']+=1
+    elif type =="Villain":
+        json_object["Villain"]+=1
+    else:
+        json_object["Peasant"]+=1
+    with open("sample.json", "w") as outfile: 
+        json.dump(json_object, outfile) 
+    
+    x_pos = [i for i, _ in enumerate(x)]
+    energy = [json_object['Wizard'],json_object['Hero'],json_object['Villain'],json_object['Peasant']]
+    plt.bar(x_pos, energy, color='green')
+    plt.xlabel("people")
+    plt.ylabel("numbers")
+    plt.title("people trying to get treasure")
 
-	#plt.bar(x_pos, energy, color='green')
-	#plt.xlabel("people")
-	#plt.ylabel("numbers")
-	#plt.title("people trying to get treasure")
+    plt.xticks(x_pos, x)
 
-	#plt.xticks(x_pos, x)
-
-	#plt.show()
+def showGraph(client,userdata,message):
+    print(str(message.payload,"utf-8"))
+    plt.show()
 
 
 
