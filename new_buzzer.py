@@ -4,7 +4,7 @@ import grovepi
 buzzer = 3
  
 length = 15
-notes = "ccggaagffeeddc "
+notes = [c, c, g, g, a, a, g, f, f, e, e, d, d, c]
 beats = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 4]
 tempo = 300;
 
