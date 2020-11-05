@@ -10,7 +10,7 @@ def variable_delay_us(delay):
 	while i != 0:
 		time.sleep(0.00001)
 
-def play_note(freq)
+def play_note(freq):
 	period = 1000000/freq
 	while freq != 0:
 		grovepi.digitalWrite(buzzer,1)
