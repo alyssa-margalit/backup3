@@ -6,7 +6,7 @@ buzzer = 3
 grovepi.pinMode(buzzer,"OUTPUT")
 
 def variable_delay_us(delay):
-	int i = (delay + 5)/10
+	i = (delay + 5)/10
 	while i != 0:
 		time.sleep(0.00001)
 
@@ -17,7 +17,7 @@ def play_note(freq)
 		variable_delay_us(period/2)
 		grovepi.digitalWrite(buzzer,0)
 		variable_delay_us(period/2)
-		
+
 play_note(440)
 
 except KeyboardInterrupt:
