@@ -559,9 +559,9 @@ def setup():
 	#GPIO.setup(buzzer_pin, GPIO.IN)
 	#GPIO.setup(buzzer_pin, GPIO.OUT)
 	
-#def destroy():
+def destroy():
 	#GPIO.cleanup()				# Release resource
-	
+	grovepi.pinMode(buzzer_pin,"INPUT")
 
 def play(melody,tempo,pause,pace=0.800):
 	
