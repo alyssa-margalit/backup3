@@ -71,6 +71,8 @@ def on_message(client, userdata, msg):
 
 
 print("things")
+
+
 if __name__ == '__main__':
     #this section is covered in publisher_and_subscriber_example.py
 	client = mqtt.Client()
