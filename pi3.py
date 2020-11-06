@@ -98,7 +98,7 @@ if __name__ == '__main__':
 		GPIO.setup(17,GPIO.OUT)
 		GPIO.output(17,1)
 		GPIO.setup(27,GPIO.OUT)
-		GPIO.output(27,)
+		GPIO.output(27,0)
 		GPIO.setup(22,GPIO.OUT)
 		GPIO.output(22,1)
 		#print(story)
