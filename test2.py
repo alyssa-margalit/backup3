@@ -26,5 +26,5 @@ while True:
 		pot = grovepi.analogRead(potentiometer)
 		print(pot)
 		time.sleep(1)
-	else:
+	except IOError:
 		print("fail")
