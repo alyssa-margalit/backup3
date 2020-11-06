@@ -9,16 +9,6 @@ import RPi.GPIO as GPIO
 import time
 
 
-red_led = 17
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(red_led, GPIO.OUT)
-GPIO.output(red_led,0)
-GPIO.setup(27, GPIO.OUT) # set a port/pin as an output  
-GPIO.output(27, 1)       # set port/pin value to 1/GPIO.HIGH/True
-
-#p = GPIO.PWM(servoPIN, 50)
-#p.start(2.5)
-#print("stuff")
 
 
 def scroll(the_text):
@@ -80,7 +70,7 @@ if __name__ == '__main__':
 	client.on_message = on_message
 	client.on_connect = on_connect
 	client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
-	print("completed connection")
+	#print("completed connection")
 	client.loop_start()
 
 
