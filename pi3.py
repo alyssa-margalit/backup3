@@ -8,39 +8,17 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setwarnings(False)
 
+led_red = 17
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(led_red, GPIO.OUT)
+GPIO.output(red_led,0)
+GPIO.setup(27, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(27, 1)       # set port/pin value to 1/GPIO.HIGH/True
 
-red_led = 17
-green_led = 27
-blue_led = 22
-button = 4
-ranger = 3
-potentiometer = 2
-fountain = 27
-
-
-#GPIO.setup(fountain, GPIO.OUT) # set a port/pin as an output  
-#GPIO.output(fountain, 1)       # set port/pin value to 1/GPIO.HIGH/True
-#GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output  
-#GPIO.output(red_led, 1)       # set port/pin value to 1/GPIO.HIGH/True
-#GPIO.setup(green_led, GPIO.OUT) # set a port/pin as an output  
-#GPIO.output(green_led, 0)       # set port/pin value to 1/GPIO.HIGH/True
-#GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output  
-#GPIO.output(blue_led, 0)       # set port/pin value to 1/GPIO.HIGH/True
-
+p = GPIO.PWM(servoPIN, 50)
+p.start(2.5)
 print("stuff")
-
-def led_init():
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output 
-	GPIO.output(red_led, 0)
-	GPIO.setup(green_led, GPIO.OUT) # set a port/pin as an output 
-	GPIO.output(green_led, 0)
-	GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output 
-	GPIO.output(blue_led, 0)
-	time.sleep(2)
-	GPIO.cleanup()
 
 
 def scroll(the_text):
@@ -97,7 +75,6 @@ print("things")
 
 
 if __name__ == '__main__':
-	main()
     #this section is covered in publisher_and_subscriber_example.py
 	client = mqtt.Client()
 	client.on_message = on_message
@@ -113,24 +90,21 @@ if __name__ == '__main__':
 	buzzer = 2
 	potentiometer = 2
 
-	#grovepi.pinMode(red_led, "OUTPUT")
-	#grovepi.pinMode(green_led, "OUTPUT")
-	#grovepi.pinMode(buzzer, "OUTPUT")
+	grovepi.pinMode(red_led, "OUTPUT")
+	grovepi.pinMode(green_led, "OUTPUT")
+	grovepi.pinMode(buzzer, "OUTPUT")
 	grovepi.pinMode(button, "INPUT")
-	
 	story = 0
-	pot = grovepi.analogRead(potentiometer)
+	pot = analogRead(potentiometer)
 	oldPot1 = pot
 	oldPot2 = pot
 	newPot = pot
 	averagePot = pot
 	deltaPot = 0
-
 	print("no")
 	while True: 
 		#print(story)
 		#begin the sequence
-		
 		print("hello")
 		distance = ultrasonicRead(ranger)
 		print(distance)
@@ -157,7 +131,6 @@ if __name__ == '__main__':
 
 		if story ==1:
 			print("red")
-			led_init()
 			setRGB(255,0,0)
 			setText("who dares disturb my slumber")
 			time.sleep(5)
