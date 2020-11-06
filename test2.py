@@ -47,10 +47,3 @@ print("pin initialization complete")
 
 
 
-
-if __name__ == '__main__':
-    
-	while True:
-		pot = analogRead(potentiometer)
-		print(pot)
-		time.sleep(1)
