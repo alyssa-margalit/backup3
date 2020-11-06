@@ -16,9 +16,9 @@ GPIO.output(red_led,0)
 GPIO.setup(27, GPIO.OUT) # set a port/pin as an output  
 GPIO.output(27, 1)       # set port/pin value to 1/GPIO.HIGH/True
 
-p = GPIO.PWM(servoPIN, 50)
-p.start(2.5)
-print("stuff")
+#p = GPIO.PWM(servoPIN, 50)
+#p.start(2.5)
+#print("stuff")
 
 
 def scroll(the_text):
