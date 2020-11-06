@@ -19,7 +19,7 @@ ranger = 3
 potentiometer = 2
 fountain = 27
 
-GPIO.setmode(GPIO.BCM)
+
 #GPIO.setup(fountain, GPIO.OUT) # set a port/pin as an output  
 #GPIO.output(fountain, 1)       # set port/pin value to 1/GPIO.HIGH/True
 #GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output  
@@ -30,6 +30,15 @@ GPIO.setmode(GPIO.BCM)
 #GPIO.output(blue_led, 0)       # set port/pin value to 1/GPIO.HIGH/True
 
 print("stuff")
+
+def led_init():
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output 
+	GPIO.output(red_led, 1)
+	GPIO.setup(green_led, GPIO.OUT) # set a port/pin as an output 
+	GPIO.output(green_led, 0)
+	GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output 
+	GPIO.output(blue_led, 0)
 
 
 def scroll(the_text):
@@ -86,6 +95,7 @@ print("things")
 
 
 if __name__ == '__main__':
+	main()
     #this section is covered in publisher_and_subscriber_example.py
 	client = mqtt.Client()
 	client.on_message = on_message
@@ -105,9 +115,9 @@ if __name__ == '__main__':
 	#grovepi.pinMode(green_led, "OUTPUT")
 	#grovepi.pinMode(buzzer, "OUTPUT")
 	grovepi.pinMode(button, "INPUT")
-	GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output 
+	
 	story = 0
-	pot = analogRead(potentiometer)
+	pot = grovepi.analogRead(potentiometer)
 	oldPot1 = pot
 	oldPot2 = pot
 	newPot = pot
@@ -117,7 +127,7 @@ if __name__ == '__main__':
 	while True: 
 		#print(story)
 		#begin the sequence
-		GPIO.output(red_led, 1)
+		
 		print("hello")
 		distance = ultrasonicRead(ranger)
 		print(distance)
