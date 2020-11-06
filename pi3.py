@@ -8,15 +8,27 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setwarnings(False)
 
-servoPIN = 17
+
+red_led = 2
+green_led = 3
+blue_led = 4
+button = 4
+ranger = 3
+potentiometer = 2
+fountain = 27
+
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(servoPIN, GPIO.OUT)
-GPIO.setup(27, GPIO.OUT) # set a port/pin as an output  
-GPIO.output(27, 1)       # set port/pin value to 1/GPIO.HIGH/True
+GPIO.setup(fountain, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(fountain, 1)       # set port/pin value to 1/GPIO.HIGH/True
+GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(red_led, 1)       # set port/pin value to 1/GPIO.HIGH/True
+GPIO.setup(green_led, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(green_led, 0)       # set port/pin value to 1/GPIO.HIGH/True
+GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(blue_led, 0)       # set port/pin value to 1/GPIO.HIGH/True
 
-p = GPIO.PWM(servoPIN, 50)
-p.start(2.5)
 print("stuff")
 
 
@@ -69,169 +81,165 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
 
-while True:
-	try:
 
-		if counter ==1:
-			if __name__ == '__main__':
-			    #this section is covered in publisher_and_subscriber_example.py
-				client = mqtt.Client()
-				client.on_message = on_message
-				client.on_connect = on_connect
-				client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
-				client.loop_start()
+print("things")
 
 
-				red_led = 8
-				green_led = 7
-				button = 4
-				ranger = 3
-				buzzer = 2
-				potentiometer = 2
+if __name__ == '__main__':
+    #this section is covered in publisher_and_subscriber_example.py
+	client = mqtt.Client()
+	client.on_message = on_message
+	client.on_connect = on_connect
+	client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
+	client.loop_start()
 
-				grovepi.pinMode(red_led, "OUTPUT")
-				grovepi.pinMode(green_led, "OUTPUT")
-				grovepi.pinMode(buzzer, "OUTPUT")
-				grovepi.pinMode(button, "INPUT")
+
+	red_led = 8
+	green_led = 7
+	button = 4
+	ranger = 3
+	buzzer = 2
+	potentiometer = 2
+
+	grovepi.pinMode(red_led, "OUTPUT")
+	grovepi.pinMode(green_led, "OUTPUT")
+	grovepi.pinMode(buzzer, "OUTPUT")
+	grovepi.pinMode(button, "INPUT")
+	story = 0
+	pot = analogRead(potentiometer)
+	oldPot1 = pot
+	oldPot2 = pot
+	newPot = pot
+	averagePot = pot
+	deltaPot = 0
+	print("no")
+	while True: 
+		#print(story)
+		#begin the sequence
+		print("hello")
+		distance = ultrasonicRead(ranger)
+		print(distance)
+		distance = int(distance)
+		#if story != 400:
+		story = 0
+		if story == 0:
+			newPot = analogRead(potentiometer)
+			averagePot = (oldPot1+oldPot2)/2
+			deltaPot = newPot-averagePot
+			print(deltaPot)
+			time.sleep(1)
+			oldPot1 = oldPot2
+			oldPot2 = newPot
+			if abs(deltaPot)>10:
+				print("begin")
+				story = 1
+			#if int(pot) >500:
+				#print("begin")
+				#story= 1
+			#if distance>10:
+				#print("begin")
+				#story = 1
+
+		if story ==1:
+			print("red")
+			setRGB(255,0,0)
+			setText("who dares disturb my slumber")
+			time.sleep(5)
+			while True:
+				pot = grovepi.analogRead(potentiometer)
+				#print(pot)
+				pressed = digitalRead(button)
+				if pressed:
+					if 0<pot<250:
+						response = "Wizard"
+						break
+					elif 250<pot<500:
+						response = "Hero"
+						break
+					elif 500<pot<750:
+						response = "Villain"
+						break
+					else:
+						response = "Peasant"
+						break
+			print(response)
+			client.publish("alyssasrpi/newAdventurer", response)
+			scroll("have you come for my precious treasure?")
+			#time.sleep(5)
+			while True:
+				pot = grovepi.analogRead(potentiometer)
+				#print(pot)
+				pressed = digitalRead(button)
+				if pressed:
+					if pot>500:
+						response = "yes"
+						break
+					else:
+						response = "no"
+						break
+			print(response)
+			if response == "no":
+				setRGB(0,255,0)
+				scroll("then replace the key and go away")
+				#time.sleep(5)
 				story = 0
-				pot = analogRead(potentiometer)
-				oldPot1 = pot
-				oldPot2 = pot
-				newPot = pot
-				averagePot = pot
-				deltaPot = 0
-				print("measured")
-				while True: 
-					#print(story)
-					#begin the sequence
-					print("hello")
-					distance = ultrasonicRead(ranger)
-					print(distance)
-					distance = int(distance)
-					#if story != 400:
-					story = 0
-					if story == 0:
-						newPot = analogRead(potentiometer)
-						averagePot = (oldPot1+oldPot2)/2
-						deltaPot = newPot-averagePot
-						print(deltaPot)
-						time.sleep(1)
-						oldPot1 = oldPot2
-						oldPot2 = newPot
-						if abs(deltaPot)>10:
-							print("begin")
-							story = 1
-						#if int(pot) >500:
-							#print("begin")
-							#story= 1
-						#if distance>10:
-							#print("begin")
-							#story = 1
+			if response =="yes":
+				setRGB(0,0,255)
+				
+				scroll("then you must answer my trivia")
+				time.sleep(5)
 
-					if story ==1:
-						print("red")
-						setRGB(255,0,0)
-						setText("who dares disturb my slumber")
+				client.publish("alyssasrpi/trivia_request", "ready")
+				
+				
+				time.sleep(2)
+				print(answer)
+				count = 0
+				#scroll(question)
+				while True:
+					pot = grovepi.analogRead(potentiometer)
+					#print(pot)
+					pressed = digitalRead(button)
+					if count == 0:
+						scroll(question)
+						count = 1
+
+					if pressed:
+						if pot>500:
+							response1 = "True"
+							break
+						else:
+							response1 = "False"
+							break
+				print(response1)
+				
+				if response1 == str(answer):
+					setRGB(0,255,0)
+					#GPIO.output(4, 0)       # set port/pin value to 0/GPIO.LOW/False  
+					setText("You are worthy!")
+					time.sleep(3)
+					client.publish("alyssasrpi/showGraph","show")
+					#scroll("Enter password 123 to unlock ")
+					#time.sleep(3)
+					#state = 0
+					story = 400
+				else: 
+					scroll("Fail! Return the treasure at once!!")
+					time.sleep(5)
+					dist = ultrasonicRead(ranger)
+					print(dist)
+					if dist <10:
+						scroll("better luck next time!")
 						time.sleep(5)
-						while True:
-							pot = grovepi.analogRead(potentiometer)
-							#print(pot)
-							pressed = digitalRead(button)
-							if pressed:
-								if 0<pot<250:
-									response = "Wizard"
-									break
-								elif 250<pot<500:
-									response = "Hero"
-									break
-								elif 500<pot<750:
-									response = "Villain"
-									break
-								else:
-									response = "Peasant"
-									break
-						print(response)
-						client.publish("alyssasrpi/newAdventurer", response)
-						scroll("have you come for my precious treasure?")
-						#time.sleep(5)
-						while True:
-							pot = grovepi.analogRead(potentiometer)
-							#print(pot)
-							pressed = digitalRead(button)
-							if pressed:
-								if pot>500:
-									response = "yes"
-									break
-								else:
-									response = "no"
-									break
-						print(response)
-						if response == "no":
-							setRGB(0,255,0)
-							scroll("then replace the key and go away")
-							#time.sleep(5)
-							story = 0
-						if response =="yes":
-							setRGB(0,0,255)
-							
-							scroll("then you must answer my trivia")
-							time.sleep(5)
+					else:
+						scroll("I hereby curse you with eternal syntax errors!!!")
+						time.sleep(5)
+						story = 400
 
-							client.publish("alyssasrpi/trivia_request", "ready")
-							
-							
-							time.sleep(2)
-							print(answer)
-							count = 0
-							#scroll(question)
-							while True:
-								pot = grovepi.analogRead(potentiometer)
-								#print(pot)
-								pressed = digitalRead(button)
-								if count == 0:
-									scroll(question)
-									count = 1
+			
 
-								if pressed:
-									if pot>500:
-										response1 = "True"
-										break
-									else:
-										response1 = "False"
-										break
-							print(response1)
-							
-							if response1 == str(answer):
-								setRGB(0,255,0)
-								GPIO.output(4, 0)       # set port/pin value to 0/GPIO.LOW/False  
-								setText("You are worthy!")
-								time.sleep(3)
-								client.publish("alyssasrpi/showGraph","show")
-								#scroll("Enter password 123 to unlock ")
-								#time.sleep(3)
-								#state = 0
-								story = 400
-							else: 
-								scroll("Fail! Return the treasure at once!!")
-								time.sleep(5)
-								dist = ultrasonicRead(ranger)
-								print(dist)
-								if dist <10:
-									scroll("better luck next time!")
-									time.sleep(5)
-								else:
-									scroll("I hereby curse you with eternal syntax errors!!!")
-									time.sleep(5)
-									story = 400
-	except:
-		print("fail")
-		time.sleep(2)
-
-
-					
-
-						
-					
+				
+			
 
 
 
