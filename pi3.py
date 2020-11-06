@@ -80,6 +80,7 @@ if __name__ == '__main__':
 	client.on_message = on_message
 	client.on_connect = on_connect
 	client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
+	print("completed connection")
 	client.loop_start()
 
 
@@ -90,9 +91,9 @@ if __name__ == '__main__':
 	buzzer = 2
 	potentiometer = 2
 
-	grovepi.pinMode(red_led, "OUTPUT")
-	grovepi.pinMode(green_led, "OUTPUT")
-	grovepi.pinMode(buzzer, "OUTPUT")
+	#grovepi.pinMode(red_led, "OUTPUT")
+	#grovepi.pinMode(green_led, "OUTPUT")
+	#grovepi.pinMode(buzzer, "OUTPUT")
 	grovepi.pinMode(button, "INPUT")
 	story = 0
 	pot = analogRead(potentiometer)
