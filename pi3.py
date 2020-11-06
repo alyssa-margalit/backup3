@@ -225,6 +225,7 @@ while True:
 									story = 400
 	except:
 		print("fail")
+		time.sleep(2)
 
 
 					
