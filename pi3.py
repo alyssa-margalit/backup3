@@ -101,10 +101,11 @@ if __name__ == '__main__':
 	buzzer = 2
 	potentiometer = 2
 
-	grovepi.pinMode(red_led, "OUTPUT")
-	grovepi.pinMode(green_led, "OUTPUT")
-	grovepi.pinMode(buzzer, "OUTPUT")
+	#grovepi.pinMode(red_led, "OUTPUT")
+	#grovepi.pinMode(green_led, "OUTPUT")
+	#grovepi.pinMode(buzzer, "OUTPUT")
 	grovepi.pinMode(button, "INPUT")
+	GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output 
 	story = 0
 	pot = analogRead(potentiometer)
 	oldPot1 = pot
