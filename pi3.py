@@ -97,9 +97,9 @@ if __name__ == '__main__':
 		GPIO.setmode(GPIO.BCM)
 		GPIO.setup(17,GPIO.OUT)
 		GPIO.output(17,1)
-		GPIO.setmode(27,GPIO.OUT)
+		GPIO.setup(27,GPIO.OUT)
 		GPIO.output(27,)
-		GPIO.setmode(22,GPIO.OUT)
+		GPIO.setup(22,GPIO.OUT)
 		GPIO.output(22,1)
 		#print(story)
 		#begin the sequence
