@@ -9,7 +9,7 @@ import RPi.GPIO as GPIO
 import time
 
 
-led_red = 17
+red_led = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(led_red, GPIO.OUT)
 GPIO.output(red_led,0)
