@@ -123,7 +123,7 @@ if __name__ == '__main__':
 	newPot = pot
 	averagePot = pot
 	deltaPot = 0
-	led_init()
+
 	print("no")
 	while True: 
 		#print(story)
@@ -155,6 +155,7 @@ if __name__ == '__main__':
 
 		if story ==1:
 			print("red")
+			led_init()
 			setRGB(255,0,0)
 			setText("who dares disturb my slumber")
 			time.sleep(5)
