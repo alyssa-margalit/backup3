@@ -6,7 +6,7 @@ from grovepi import *
 import math
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
-import time
+
 
 
 GPIO.setwarnings(False)
