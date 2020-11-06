@@ -101,6 +101,8 @@ if __name__ == '__main__':
 		GPIO.output(27,0)
 		GPIO.setup(22,GPIO.OUT)
 		GPIO.output(22,1)
+		GPIO.setup(10, GPIO.OUT)
+		GPIO.output(10,1)
 		#print(story)
 		#begin the sequence
 		print("hello")
