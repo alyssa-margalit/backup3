@@ -39,6 +39,7 @@ def led_init():
 	GPIO.output(green_led, 0)
 	GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output 
 	GPIO.output(blue_led, 0)
+	GPIO.cleanup()
 
 
 def scroll(the_text):
