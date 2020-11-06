@@ -12,11 +12,12 @@ import time
 servoPIN = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servoPIN, GPIO.OUT)
-GPIO.setup(4, GPIO.OUT) # set a port/pin as an output  
-GPIO.output(4, 1)       # set port/pin value to 1/GPIO.HIGH/True
+GPIO.setup(27, GPIO.OUT) # set a port/pin as an output  
+GPIO.output(27, 1)       # set port/pin value to 1/GPIO.HIGH/True
 
 p = GPIO.PWM(servoPIN, 50)
 p.start(2.5)
+print("stuff")
 
 
 def scroll(the_text):
@@ -55,6 +56,7 @@ def on_connect(client, userdata, flags, rc):
     client.message_callback_add("alyssasrpi/trivia_question", trivia_question_callback)
     client.subscribe("alyssasrpi/trivia_answer")
     client.message_callback_add("alyssasrpi/trivia_answer", trivia_answer_callback)
+    print("connected")
     #global story
     #story = 5
     #client.subscribe("alyssasrpi/button")
@@ -66,7 +68,7 @@ def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
 
 
-
+print("things")
 if __name__ == '__main__':
     #this section is covered in publisher_and_subscriber_example.py
 	client = mqtt.Client()
