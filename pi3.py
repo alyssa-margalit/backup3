@@ -34,11 +34,12 @@ print("stuff")
 def led_init():
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output 
-	GPIO.output(red_led, 1)
+	GPIO.output(red_led, 0)
 	GPIO.setup(green_led, GPIO.OUT) # set a port/pin as an output 
 	GPIO.output(green_led, 0)
 	GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output 
 	GPIO.output(blue_led, 0)
+	time.sleep(2)
 	GPIO.cleanup()
 
 
