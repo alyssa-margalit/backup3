@@ -9,7 +9,7 @@ import RPi.GPIO as GPIO
 import time
 
 
-
+GPIO.setwarnings(False)
 
 red_led = 2
 green_led = 3
@@ -107,15 +107,14 @@ if __name__ == '__main__':
 		#print(story)
 		#begin the sequence
 		print("hello")
-		distance = ultrasonicRead(ranger)
-		print(distance)
-		distance = int(distance)
-		#if story != 400:
 		story = 0
-		if story == 0:
-			if distance>10:
-				print("begin")
-				story = 1
+		pot = analogRead(potentiometer)
+		oldPot1 = pot
+		oldPot2 = pot
+		newPot = pot
+		averagePot = pot
+		deltaPot = 0
+		print(pot)
 
 		if story ==1:
 			print("red")
