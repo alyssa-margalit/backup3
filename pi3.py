@@ -116,6 +116,7 @@ if __name__ == '__main__':
 	while True: 
 		#print(story)
 		#begin the sequence
+		GPIO.output(red_led, 1)
 		print("hello")
 		distance = ultrasonicRead(ranger)
 		print(distance)
