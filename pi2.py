@@ -94,7 +94,7 @@ if __name__ == '__main__':
 	newPot = pot
 	averagePot = pot
 	deltaPot = 0
-
+	print("no")
 	while True: 
 		#print(story)
 		#begin the sequence
