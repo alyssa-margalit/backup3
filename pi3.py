@@ -204,6 +204,9 @@ if __name__ == '__main__':
 					setRGB(0,255,0)
 					#GPIO.output(4, 0)       # set port/pin value to 0/GPIO.LOW/False  
 					setText("You are worthy!")
+					GPIO.output(17,0)
+					GPIO.output(27,1)
+					GPIO.output(22,0)
 					time.sleep(3)
 					client.publish("alyssasrpi/showGraph","show")
 					#scroll("Enter password 123 to unlock ")
