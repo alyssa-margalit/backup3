@@ -94,6 +94,7 @@ if __name__ == '__main__':
 	deltaPot = 0
 	print("no")
 	while True: 
+		GPIO.setmode(GPIO.BCM)
 		#print(story)
 		#begin the sequence
 		print("hello")
