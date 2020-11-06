@@ -123,6 +123,7 @@ if __name__ == '__main__':
 	newPot = pot
 	averagePot = pot
 	deltaPot = 0
+	led_init()
 	print("no")
 	while True: 
 		#print(story)
