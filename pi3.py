@@ -95,6 +95,7 @@ if __name__ == '__main__':
 	print("no")
 	while True: 
 		GPIO.setmode(GPIO.BCM)
+		GPIO.setup(17,GPIO.OUT)
 		#print(story)
 		#begin the sequence
 		print("hello")
