@@ -11,9 +11,9 @@ import time
 GPIO.setwarnings(False)
 
 
-red_led = 2
-green_led = 3
-blue_led = 4
+red_led = 10
+green_led = 9
+blue_led = 11
 button = 4
 ranger = 3
 potentiometer = 2
