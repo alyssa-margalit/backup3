@@ -105,7 +105,10 @@ if __name__ == '__main__':
 
 	while True: 
 		print("things")
+		pot = analogRead(potentiometer)
+		print(pot)
 		time.sleep(1)
+
 
 			
 
