@@ -11,7 +11,7 @@ import time
 
 red_led = 17
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(led_red, GPIO.OUT)
+GPIO.setup(red_led, GPIO.OUT)
 GPIO.output(red_led,0)
 GPIO.setup(27, GPIO.OUT) # set a port/pin as an output  
 GPIO.output(27, 1)       # set port/pin value to 1/GPIO.HIGH/True
