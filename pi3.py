@@ -20,13 +20,13 @@ potentiometer = 2
 fountain = 27
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(fountain, GPIO.OUT) # set a port/pin as an output  
+#GPIO.setup(fountain, GPIO.OUT) # set a port/pin as an output  
 #GPIO.output(fountain, 1)       # set port/pin value to 1/GPIO.HIGH/True
-GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output  
+#GPIO.setup(red_led, GPIO.OUT) # set a port/pin as an output  
 #GPIO.output(red_led, 1)       # set port/pin value to 1/GPIO.HIGH/True
-GPIO.setup(green_led, GPIO.OUT) # set a port/pin as an output  
+#GPIO.setup(green_led, GPIO.OUT) # set a port/pin as an output  
 #GPIO.output(green_led, 0)       # set port/pin value to 1/GPIO.HIGH/True
-GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output  
+#GPIO.setup(blue_led, GPIO.OUT) # set a port/pin as an output  
 #GPIO.output(blue_led, 0)       # set port/pin value to 1/GPIO.HIGH/True
 
 print("stuff")
