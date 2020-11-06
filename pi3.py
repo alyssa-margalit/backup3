@@ -116,6 +116,9 @@ if __name__ == '__main__':
 		deltaPot = 0
 		print(pot)
 
+		distance = ultrasonicRead(ranger)
+		print(distance)
+
 		if story ==1:
 			print("red")
 			setRGB(255,0,0)
