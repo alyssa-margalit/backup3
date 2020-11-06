@@ -1,0 +1,3 @@
+import grovepi
+
+setText("hello")
