@@ -203,7 +203,7 @@ if __name__ == '__main__':
 				
 				if response1 == str(answer):
 					setRGB(0,255,0)
-					GPIO.output(4, 0)       # set port/pin value to 0/GPIO.LOW/False  
+					#GPIO.output(4, 0)       # set port/pin value to 0/GPIO.LOW/False  
 					setText("You are worthy!")
 					time.sleep(3)
 					client.publish("alyssasrpi/showGraph","show")
